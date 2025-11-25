@@ -279,28 +279,37 @@
     </footer>
   </div>
   <script>
-    // Jadikan kartu HaloAbuDhabi dapat diklik ke tautan utama
+    // Jadikan semua kartu dapat diklik; buka link utama di tab baru
     (() => {
-      const card = document.querySelector('#haloabudhabi');
-      const target = card?.dataset.href;
-      if (!card || !target) return;
+      const cards = document.querySelectorAll('.card');
+      cards.forEach((card) => {
+        const target = card.dataset.href || card.querySelector('.links a')?.href;
+        if (!target) return;
 
-      card.addEventListener('click', (event) => {
-        if (event.target.closest('a')) return;
-        window.location.href = target;
-      });
-
-      card.addEventListener('keydown', (event) => {
-        if (event.key === 'Enter' || event.key === ' ') {
-          event.preventDefault();
-          window.location.href = target;
+        card.classList.add('clickable');
+        card.setAttribute('role', 'link');
+        card.setAttribute('tabindex', '0');
+        if (!card.getAttribute('aria-label')) {
+          const title = card.querySelector('h3')?.textContent?.trim() || 'Buka layanan';
+          card.setAttribute('aria-label', `Buka ${title}`);
         }
+
+        card.addEventListener('click', (event) => {
+          if (event.target.closest('a')) return;
+          window.open(target, '_blank');
+        });
+
+        card.addEventListener('keydown', (event) => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            window.open(target, '_blank');
+          }
+        });
       });
     })();
   </script>
 </body>
 </html>
-
 
 
 
