@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KBRI Abu Dhabi | Portal Layanan Digital</title>
+  <style>
+    :root {
+      --bg: #0b1b2b;
+      --card: #0f2438;
+      --accent: #00e0b8;
+      --accent-2: #78f4ff;
+      --text: #e8f0f6;
+      --muted: #9fb3c8;
+      --border: rgba(255,255,255,0.08);
+      --gradient: linear-gradient(135deg, #0e2c45 0%, #0b1b2b 40%, #04101e 100%);
+      --shadow: 0 20px 40px rgba(0,0,0,0.35);
+      --radius: 18px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--gradient);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      padding: 24px 16px 48px;
+    }
+    .page {
+      width: 100%;
+      max-width: 1200px;
+    }
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 16px 18px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      backdrop-filter: blur(12px);
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .brand .flag {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: linear-gradient(180deg, #d50000 0 33%, #fff 33% 66%, #008b00 66% 100%);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    }
+    .brand h1 {
+      margin: 0;
+      font-size: 18px;
+      letter-spacing: 0.6px;
+    }
+    .brand span { color: var(--muted); font-size: 13px; }
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      background: linear-gradient(120deg, var(--accent) 0%, var(--accent-2) 100%);
+      color: #08242e;
+      border-radius: 14px;
+      border: none;
+      font-weight: 700;
+      text-decoration: none;
+      box-shadow: 0 10px 30px rgba(0, 224, 184, 0.3);
+    }
+    .hero {
+      margin: 28px 0 24px;
+      padding: 26px 22px;
+      background: radial-gradient(circle at 15% 20%, rgba(120, 244, 255, 0.18), transparent 32%), radial-gradient(circle at 80% 0%, rgba(0, 224, 184, 0.26), transparent 35%), var(--card);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+    }
+    .hero h2 { margin: 0 0 12px; font-size: 26px; }
+    .hero p { margin: 0 0 18px; color: var(--muted); }
+    .hero .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .chip {
+      padding: 8px 12px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 14px;
+    }
+    .card {
+      position: relative;
+      padding: 18px 16px 16px;
+      border-radius: 16px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      box-shadow: 0 10px 26px rgba(0,0,0,0.25);
+      transition: transform 180ms ease, border 180ms ease, box-shadow 180ms ease;
+    }
+    .card:hover { transform: translateY(-2px); border-color: rgba(0,224,184,0.5); box-shadow: 0 18px 30px rgba(0,0,0,0.35); }
+    .icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
+      background: rgba(0,224,184,0.12);
+      display: grid;
+      place-items: center;
+      font-size: 22px;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+    .card h3 { margin: 0 0 8px; font-size: 18px; }
+    .card p { margin: 0 0 14px; color: var(--muted); font-size: 14px; }
+    .links { display: flex; flex-wrap: wrap; gap: 8px; }
+    .links a {
+      padding: 8px 12px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      color: var(--text);
+      text-decoration: none;
+      font-size: 13px;
+      background: rgba(255,255,255,0.02);
+    }
+    .links a:hover { border-color: rgba(0,224,184,0.4); color: var(--accent); }
+    footer {
+      margin-top: 26px;
+      padding: 14px 12px;
+      color: var(--muted);
+      font-size: 13px;
+      text-align: center;
+    }
+    @media (min-width: 900px) {
+      .hero { padding: 32px 30px; }
+      .hero h2 { font-size: 30px; }
+      .grid { gap: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="brand">
+        <div class="flag" aria-hidden="true"></div>
+        <div>
+          <h1>KBRI Abu Dhabi</h1>
+          <span>Portal Layanan Digital</span>
+        </div>
+      </div>
+      <a class="cta" href="#haloabudhabi">Mulai Layanan</a>
+    </header>
+
+    <section class="hero">
+      <h2>Layanan resmi KBRI Abu Dhabi untuk WNI & mitra internasional.</h2>
+      <p>Akses cepat ke asistensi AI, layanan kekonsuleran, pelindungan WNI, investasi, hingga kontak darurat. Dirancang mobile-first, aman, dan terintegrasi.</p>
+      <div class="chips">
+        <span class="chip">Bahasa Indonesia & Inggris</span>
+        <span class="chip">Notifikasi status</span>
+        <span class="chip">Janji temu daring</span>
+        <span class="chip">24/7 Hotline</span>
+      </div>
+    </section>
+
+    <section class="grid">
+      <article class="card" id="haloabudhabi">
+        <div class="icon">🤝</div>
+        <h3>HaloAbuDhabi</h3>
+        <p>Asisten AI dengan basis pengetahuan KBRI untuk menjawab prosedur, dokumen, hingga kebutuhan harian WNI.</p>
+        <div class="links">
+          <a href="#">Tanya layanan</a>
+          <a href="#">Cari prosedur</a>
+          <a href="#">Jam operasional</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="icon">🛡️</div>
+        <h3>Pelindungan WNI</h3>
+        <p>Informasi bantuan hukum, shelter, pengaduan kasus, dan panduan keselamatan di Uni Emirat Arab.</p>
+        <div class="links">
+          <a href="#">Lapor darurat</a>
+          <a href="#">Panduan kasus</a>
+          <a href="#">Form pengaduan</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="icon">📑</div>
+        <h3>Pelayanan KBRI</h3>
+        <p>Akses seluruh layanan kekonsuleran, keprotokolan, hingga administrasi umum secara terarah.</p>
+        <div class="links">
+          <a href="#">Daftar layanan</a>
+          <a href="#">Syarat dokumen</a>
+          <a href="#">Status permohonan</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="icon">🛂</div>
+        <h3>Pelayanan Kekonsuleran</h3>
+        <p>Panduan paspor, SPLP, legalisasi, surat keterangan, serta janji temu.</p>
+        <div class="links">
+          <a href="#">Paspor & SPLP</a>
+          <a href="#">Legalitas dokumen</a>
+          <a href="#">Buat appointment</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="icon">🌏</div>
+        <h3>Info Pariwisata untuk WNA</h3>
+        <p>Rekomendasi destinasi, peraturan kunjungan, dan panduan perjalanan ke Indonesia.</p>
+        <div class="links">
+          <a href="#">Panduan visa</a>
+          <a href="#">Destinasi unggulan</a>
+          <a href="#">Protokol perjalanan</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="icon">📈</div>
+        <h3>Investasi & Perdagangan</h3>
+        <p>Insight peluang bisnis, regulasi ekspor-impor, dan dukungan KBRI bagi investor.</p>
+        <div class="links">
+          <a href="#">Peluang sektor utama</a>
+          <a href="#">Regulasi & izin</a>
+          <a href="#">Hubungi tim ekonomi</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="icon">☎️</div>
+        <h3>Hotline & CS KBRI</h3>
+        <p>Kontak darurat, nomor layanan, dan jalur pengaduan resmi KBRI Abu Dhabi.</p>
+        <div class="links">
+          <a href="#">Hotline 24/7</a>
+          <a href="#">WhatsApp resmi</a>
+          <a href="#">Email & lokasi</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="icon">📘</div>
+        <h3>Buku Saku PMI</h3>
+        <p>Materi praktis untuk pekerja migran: hak & kewajiban, prosedur hukum, dan keselamatan kerja.</p>
+        <div class="links">
+          <a href="#">Unduh PDF</a>
+          <a href="#">Ringkasan cepat</a>
+          <a href="#">Kontak perlindungan</a>
+        </div>
+      </article>
+    </section>
+
+    <footer>
+      KBRI Abu Dhabi · Layanan digital untuk WNI & mitra internasional · Dibangun mobile-first
+    </footer>
+  </div>
+</body>
+</html>
