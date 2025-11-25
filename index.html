@@ -38,67 +38,6 @@
       width: 100%;
       max-width: 1200px;
     }
-    .top-safe-area {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: calc(env(safe-area-inset-top, 0px) + 16px);
-      padding-top: env(safe-area-inset-top, 0px);
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
-      pointer-events: none;
-      z-index: 30;
-      background: linear-gradient(180deg, rgba(11,27,43,0.92) 0%, rgba(11,27,43,0) 100%);
-    }
-    #dynamic-island {
-      min-width: 180px;
-      max-width: 320px;
-      padding: 8px 14px;
-      border-radius: 18px;
-      background: rgba(15,36,56,0.9);
-      border: 1px solid rgba(255,255,255,0.12);
-      box-shadow: 0 12px 30px rgba(0,0,0,0.35);
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      color: #e8f0f6;
-      font-size: 12px;
-      line-height: 1.2;
-      opacity: 0;
-      transform: scale(0.8);
-      backdrop-filter: blur(12px);
-      transition: opacity 260ms ease, transform 260ms ease;
-      pointer-events: auto;
-    }
-    #dynamic-island .di-pill {
-      padding: 6px 10px;
-      border-radius: 999px;
-      background: rgba(120,244,255,0.12);
-      color: #78f4ff;
-      font-weight: 700;
-    }
-    #dynamic-island .di-status {
-      color: #c8d7e5;
-      font-weight: 600;
-    }
-    @keyframes di-intro {
-      0% { opacity: 0; transform: scale(0.8); }
-      100% { opacity: 1; transform: scale(1); }
-    }
-    @keyframes di-subtle {
-      0% { opacity: 1; transform: scale(1); }
-      100% { opacity: 0.92; transform: scale(0.94); }
-    }
-    @keyframes di-tap {
-      0% { transform: scale(1); box-shadow: 0 12px 30px rgba(0,0,0,0.35); }
-      50% { transform: scale(1.05); box-shadow: 0 16px 36px rgba(0,224,184,0.25); }
-      100% { transform: scale(1); box-shadow: 0 12px 30px rgba(0,0,0,0.35); }
-    }
-    .di-visible { animation: di-intro 0.7s cubic-bezier(0.33, 1, 0.68, 1) forwards; }
-    .di-subtle { animation: di-subtle 0.6s ease forwards; }
-    .di-tap { animation: di-tap 0.28s ease; }
     header {
       display: flex;
       align-items: center;
@@ -324,7 +263,7 @@
     }
     @media (max-width: 640px) {
       .cta { display: none; }
-      body { padding-bottom: 96px; padding-top: calc(env(safe-area-inset-top, 0px) + 16px); }
+      body { padding-bottom: 96px; }
       .mobile-nav { display: grid; }
     }
     @media (min-width: 900px) {
@@ -335,12 +274,6 @@
   </style>
 </head>
 <body>
-  <div class="top-safe-area">
-    <div id="dynamic-island" aria-live="polite">
-      <span class="di-pill">KBRI Abu Dhabi</span>
-      <span class="di-status">Layanan siap membantu</span>
-    </div>
-  </div>
   <div class="page">
     <div data-include="header-id.html"></div>
 
@@ -496,38 +429,6 @@
           }
         });
       });
-    })();
-
-    // Dynamic Island style animation
-    (() => {
-      const island = document.getElementById('dynamic-island');
-      if (!island) return;
-
-      const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
-
-      window.addEventListener('DOMContentLoaded', () => {
-        island.classList.add('di-visible');
-        setTimeout(() => island.classList.add('di-subtle'), 3200);
-      });
-
-      const triggerPulse = () => {
-        island.classList.remove('di-tap');
-        void island.offsetWidth;
-        island.classList.add('di-tap');
-      };
-
-      const bindPulses = () => {
-        const ctas = document.querySelectorAll('.cta, .cta-button');
-        const cards = document.querySelectorAll('.card, .service-card');
-        [...ctas, ...cards].forEach(el => {
-          el.addEventListener('click', triggerPulse, { passive: true });
-        });
-      };
-      bindPulses();
-
-      if (isIOS) {
-        island.style.marginTop = '4px';
-      }
     })();
   </script>
 </body>
