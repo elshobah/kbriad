@@ -149,8 +149,44 @@
       font-size: 13px;
       text-align: center;
     }
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(15,36,56,0.95);
+      border-top: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+      padding: 8px 10px 14px;
+      z-index: 20;
+      box-shadow: 0 -8px 24px rgba(0,0,0,0.35);
+      grid-template-columns: repeat(5, 1fr);
+      gap: 6px;
+    }
+    .mobile-nav a {
+      display: grid;
+      place-items: center;
+      gap: 6px;
+      padding: 8px 4px;
+      border-radius: 12px;
+      color: var(--text);
+      text-decoration: none;
+      font-size: 12px;
+      border: 1px solid transparent;
+      transition: border 150ms ease, background 150ms ease, color 150ms ease;
+    }
+    .mobile-nav a .nav-icon { font-size: 18px; }
+    .mobile-nav a .nav-label { font-weight: 600; letter-spacing: 0.1px; }
+    .mobile-nav a:hover {
+      border-color: rgba(0,224,184,0.4);
+      background: rgba(0,224,184,0.08);
+      color: var(--accent);
+    }
     @media (max-width: 640px) {
       .cta { display: none; }
+      body { padding-bottom: 120px; }
+      .mobile-nav { display: grid; }
     }
     @media (min-width: 900px) {
       .hero { padding: 32px 30px; }
@@ -161,19 +197,9 @@
 </head>
 <body>
   <div class="page">
-    <header>
-      <div class="brand">
-        <!-- <img src="https://storage.elshobah.com/kbriad/logo-kbri-abu-dhabi.svg" alt="Logo KBRI Abu Dhabi"> -->
-        <img src="https://storage.elshobah.com/kbriad/logo-kbri-abu-dhabi.png" alt="Logo KBRI Abu Dhabi">
-        <div>
-          <h1>KBRI Abu Dhabi</h1>
-          <span>Portal Layanan Digital</span>
-        </div>
-      </div>
-      <a class="cta" href="#haloabudhabi">Mulai Layanan</a>
-    </header>
+    <div data-include="header-id.html"></div>
 
-    <section class="hero">
+    <section class="hero" id="hero">
       <h2>Layanan resmi KBRI Abu Dhabi untuk WNI & mitra internasional.</h2>
       <p>Akses cepat ke asistensi AI, layanan kekonsuleran, pelindungan WNI, investasi, hingga kontak darurat. Dirancang mobile-first, aman, dan terintegrasi.</p>
       <!-- <div class="chips">
@@ -184,7 +210,7 @@
       </div> -->
     </section>
 
-    <section class="grid">
+    <section class="grid" id="services">
       <article class="card clickable" id="haloabudhabi" data-href="https://chatgpt.com/g/g-6901b33f28648191991b868a6fbaf6e1-haloabudhabi" role="link" tabindex="0" aria-label="Buka HaloAbuDhabi">
         <div class="icon">🤝</div>
         <h3>HaloAbuDhabi</h3>
@@ -275,11 +301,25 @@
       </article>
     </section>
 
-    <footer>
-      KBRI Abu Dhabi · Layanan digital untuk WNI & mitra internasional · by <a href="elshobah.com" target="_blank">elshobah</a>elshobah
-    </footer>
+    <div data-include="footer-id.html"></div>
   </div>
   <script>
+    // Inject header/footer partials
+    (async () => {
+      const slots = document.querySelectorAll('[data-include]');
+      for (const slot of slots) {
+        const url = slot.getAttribute('data-include');
+        if (!url) continue;
+        try {
+          const res = await fetch(url);
+          if (!res.ok) continue;
+          slot.innerHTML = await res.text();
+        } catch (e) {
+          console.warn('Include failed:', url);
+        }
+      }
+    })();
+
     // Jadikan semua kartu dapat diklik; buka link utama di tab baru
     (() => {
       const cards = document.querySelectorAll('.card');

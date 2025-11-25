@@ -149,8 +149,44 @@
       font-size: 13px;
       text-align: center;
     }
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(15,36,56,0.95);
+      border-top: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+      padding: 8px 10px 14px;
+      z-index: 20;
+      box-shadow: 0 -8px 24px rgba(0,0,0,0.35);
+      grid-template-columns: repeat(5, 1fr);
+      gap: 6px;
+    }
+    .mobile-nav a {
+      display: grid;
+      place-items: center;
+      gap: 6px;
+      padding: 8px 4px;
+      border-radius: 12px;
+      color: var(--text);
+      text-decoration: none;
+      font-size: 12px;
+      border: 1px solid transparent;
+      transition: border 150ms ease, background 150ms ease, color 150ms ease;
+    }
+    .mobile-nav a .nav-icon { font-size: 18px; }
+    .mobile-nav a .nav-label { font-weight: 600; letter-spacing: 0.1px; }
+    .mobile-nav a:hover {
+      border-color: rgba(0,224,184,0.4);
+      background: rgba(0,224,184,0.08);
+      color: var(--accent);
+    }
     @media (max-width: 640px) {
       .cta { display: none; }
+      body { padding-bottom: 120px; }
+      .mobile-nav { display: grid; }
     }
     @media (min-width: 900px) {
       .hero { padding: 32px 30px; }
@@ -161,18 +197,9 @@
 </head>
 <body>
   <div class="page">
-    <header>
-      <div class="brand">
-        <img src="https://storage.elshobah.com/kbriad/logo-kbri-abu-dhabi.png" alt="Logo of the Embassy of Indonesia in Abu Dhabi">
-        <div>
-          <h1>Embassy of Indonesia</h1>
-          <span>Digital Service Portal</span>
-        </div>
-      </div>
-      <a class="cta" href="#haloabudhabi">Start Services</a>
-    </header>
+    <div data-include="header-en.html"></div>
 
-    <section class="hero">
+    <section class="hero" id="hero">
       <h2>Official services of the Embassy of Indonesia in Abu Dhabi for Indonesians & international partners.</h2>
       <p>Fast access to the tailored AI assistant, consular services, citizen protection, investment support, and emergency contacts. Built mobile-first, secure, and integrated.</p>
       <!-- <div class="chips">
@@ -183,7 +210,7 @@
       </div> -->
     </section>
 
-    <section class="grid">
+    <section class="grid" id="services">
       <article class="card clickable" id="haloabudhabi" data-href="https://chatgpt.com/g/g-6901b33f28648191991b868a6fbaf6e1-haloabudhabi" role="link" tabindex="0" aria-label="Open HaloAbuDhabi">
         <div class="icon">??</div>
         <h3>HaloAbuDhabi</h3>
@@ -269,11 +296,25 @@
       </article>
     </section>
 
-    <footer>
-      Embassy of Indonesia Abu Dhabi – Digital services for Indonesians & international partners – by <a href="https://elshobah.com" target="_blank" rel="noopener">elshobah</a>
-    </footer>
+    <div data-include="footer-en.html"></div>
   </div>
   <script>
+    // Inject header/footer partials
+    (async () => {
+      const slots = document.querySelectorAll('[data-include]');
+      for (const slot of slots) {
+        const url = slot.getAttribute('data-include');
+        if (!url) continue;
+        try {
+          const res = await fetch(url);
+          if (!res.ok) continue;
+          slot.innerHTML = await res.text();
+        } catch (e) {
+          console.warn('Include failed:', url);
+        }
+      }
+    })();
+
     // Make all cards clickable; open main link in a new tab
     (() => {
       const cards = document.querySelectorAll('.card');
@@ -305,3 +346,5 @@
   </script>
 </body>
 </html>
+
+
