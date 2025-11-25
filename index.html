@@ -38,6 +38,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      flex-wrap: wrap;
       gap: 16px;
       padding: 16px 18px;
       background: rgba(255,255,255,0.02);
@@ -77,6 +78,39 @@
       font-weight: 700;
       text-decoration: none;
       box-shadow: 0 10px 30px rgba(0, 224, 184, 0.3);
+    }
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-left: auto;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    .lang-switch {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 6px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+    }
+    .lang-switch button {
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      font-weight: 600;
+      padding: 7px 10px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 150ms ease, color 150ms ease;
+    }
+    .lang-switch button:hover { color: var(--text); background: rgba(255,255,255,0.05); }
+    .lang-switch button.active {
+      background: linear-gradient(120deg, var(--accent) 0%, var(--accent-2) 100%);
+      color: #08242e;
+      box-shadow: 0 6px 16px rgba(0,224,184,0.25);
     }
     .hero {
       margin: 28px 0 24px;
@@ -147,8 +181,18 @@
       font-size: 13px;
       text-align: center;
     }
+    /* Hide default Google Translate badge/iframe */
+    #google_translate_element,
+    .goog-te-banner-frame,
+    .goog-logo-link,
+    .goog-te-gadget span,
+    .goog-te-gadget-simple img {
+      display: none !important;
+    }
+    body { top: 0 !important; }
     @media (max-width: 640px) {
       .cta { display: none; }
+      .header-actions { width: 100%; justify-content: flex-start; }
     }
     @media (min-width: 900px) {
       .hero { padding: 32px 30px; }
@@ -167,7 +211,14 @@
           <span>Portal Layanan Digital</span>
         </div>
       </div>
-      <a class="cta" href="#haloabudhabi">Mulai Layanan</a>
+      <div class="header-actions">
+        <div class="lang-switch" aria-label="Pilih bahasa">
+          <button type="button" class="active" aria-pressed="true" data-lang="id">Indonesia</button>
+          <button type="button" aria-pressed="false" data-lang="en">English</button>
+          <button type="button" aria-pressed="false" data-lang="ar">Arab</button>
+        </div>
+        <a class="cta" href="#haloabudhabi">Mulai Layanan</a>
+      </div>
     </header>
 
     <section class="hero">
@@ -275,5 +326,43 @@
       KBRI Abu Dhabi · Layanan digital untuk WNI & mitra internasional · Dibangun mobile-first
     </footer>
   </div>
+  <div id="google_translate_element" aria-hidden="true"></div>
+  <script>
+    // Initialize Google Translate and wire custom language buttons
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'id',
+        includedLanguages: 'id,en,ar',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+        autoDisplay: false
+      }, 'google_translate_element');
+      attachLangHandlers();
+    }
+
+    function attachLangHandlers() {
+      const buttons = document.querySelectorAll('.lang-switch button');
+      buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          setLanguage(btn.dataset.lang);
+          buttons.forEach(b => {
+            b.classList.toggle('active', b === btn);
+            b.setAttribute('aria-pressed', b === btn ? 'true' : 'false');
+          });
+        });
+      });
+    }
+
+    function setLanguage(lang) {
+      const select = document.querySelector('.goog-te-combo');
+      if (!select) return;
+      select.value = lang;
+      select.dispatchEvent(new Event('change'));
+    }
+
+    // Load Google Translate script
+    const gt = document.createElement('script');
+    gt.src = '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+    document.head.appendChild(gt);
+  </script>
 </body>
 </html>
