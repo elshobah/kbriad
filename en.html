@@ -202,6 +202,44 @@
       color: var(--muted);
       font-size: 13px;
     }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 14px;
+      border: 1px solid var(--border);
+      color: var(--text);
+      background: rgba(255,255,255,0.03);
+      box-shadow: 0 8px 18px rgba(0,0,0,0.25);
+      transition: transform 150ms ease, box-shadow 150ms ease, border 150ms ease, color 150ms ease, background 150ms ease;
+    }
+    .btn:hover {
+      transform: translateY(-1px);
+      border-color: rgba(0,224,184,0.5);
+      color: var(--accent);
+      background: rgba(0,224,184,0.08);
+      box-shadow: 0 12px 24px rgba(0,224,184,0.16);
+    }
+    .btn.primary {
+      background: linear-gradient(120deg, var(--accent) 0%, var(--accent-2) 100%);
+      color: #08242e;
+      border-color: transparent;
+    }
+    .btn.primary:hover {
+      color: #08242e;
+      transform: translateY(-1px);
+      box-shadow: 0 14px 28px rgba(0,224,184,0.26);
+    }
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -315,11 +353,15 @@
         <span class="chip">Online appointments</span>
         <span class="chip">24/7 Hotline</span>
       </div> -->
+      <div class="hero-actions">
+        <a class="btn primary cta-button" href="https://wa.me/c/971565115193" target="_blank" rel="noopener">New service request</a>
+        <a class="btn cta-button" href="https://complex-property-5e5.notion.site/Stasus-Layanan-Kekonsuleran-KBRI-Abu-Dhabi-2b6cd960fea580af96f9f27691eef163" target="_blank" rel="noopener">Track document / service status</a>
+      </div>
     </section>
 
     <section class="grid" id="services">
       <article class="card clickable" id="haloabudhabi" data-href="https://chatgpt.com/g/g-6901b33f28648191991b868a6fbaf6e1-haloabudhabi" role="link" tabindex="0" aria-label="Open HaloAbuDhabi">
-        <div class="icon">??</div>
+        <div class="icon">🤝</div>
         <h3>HaloAbuDhabi</h3>
         <p>AI assistant with the Embassy’s knowledge base to answer procedures, documents, and daily needs for Indonesians.</p>
         <div class="links">
@@ -328,7 +370,7 @@
       </article>
 
       <article class="card">
-        <div class="icon">???</div>
+        <div class="icon">🛡️</div>
         <h3>Indonesian Citizen Protection</h3>
         <p>Information on legal aid, shelters, case reporting, and safety guidance in the United Arab Emirates.</p>
         <div class="links">
@@ -337,7 +379,7 @@
       </article>
 
       <article class="card">
-        <div class="icon">??</div>
+        <div class="icon">📑</div>
         <h3>Embassy Services</h3>
         <p>Access all consular, protocol, and administrative services in one place.</p>
         <div class="links">
@@ -348,7 +390,7 @@
       </article>
 
       <article class="card">
-        <div class="icon">??</div>
+        <div class="icon">🛂</div>
         <h3>Consular Services</h3>
         <p>Guides for passports, SPLP, legalizations, certificates, and appointments.</p>
         <div class="links">
@@ -358,7 +400,7 @@
       </article>
 
       <article class="card">
-        <div class="icon">??</div>
+        <div class="icon">🌏</div>
         <h3>Travel Info for Foreign Nationals</h3>
         <p>Destination tips, visit regulations, and travel guidance to Indonesia.</p>
         <div class="links">
@@ -370,7 +412,7 @@
       </article>
 
       <article class="card">
-        <div class="icon">??</div>
+        <div class="icon">📈</div>
         <h3>Investment & Trade</h3>
         <p>Insights on business opportunities, import/export regulations, and Embassy support for investors.</p>
         <div class="links">
@@ -380,7 +422,7 @@
       </article>
 
       <article class="card">
-        <div class="icon">??</div>
+        <div class="icon">☎️</div>
         <h3>Hotline & Customer Service</h3>
         <p>Emergency contacts, service numbers, and official complaint channels of the Embassy.</p>
         <div class="links">
@@ -393,7 +435,7 @@
       </article>
 
       <article class="card">
-        <div class="icon">??</div>
+        <div class="icon">📘</div>
         <h3>Migrant Worker Pocketbook</h3>
         <p>Practical materials for migrant workers: rights, duties, legal procedures, and safety guidance.</p>
         <div class="links">
