@@ -114,8 +114,10 @@
       border: 1px solid var(--border);
       box-shadow: 0 10px 26px rgba(0,0,0,0.25);
       transition: transform 180ms ease, border 180ms ease, box-shadow 180ms ease;
+      cursor: default;
     }
     .card:hover { transform: translateY(-2px); border-color: rgba(0,224,184,0.5); box-shadow: 0 18px 30px rgba(0,0,0,0.35); }
+    .card.clickable { cursor: pointer; }
     .icon {
       width: 46px;
       height: 46px;
@@ -174,23 +176,23 @@
     <section class="hero">
       <h2>Layanan resmi KBRI Abu Dhabi untuk WNI & mitra internasional.</h2>
       <p>Akses cepat ke asistensi AI, layanan kekonsuleran, pelindungan WNI, investasi, hingga kontak darurat. Dirancang mobile-first, aman, dan terintegrasi.</p>
-      <div class="chips">
+      <!-- <div class="chips">
         <span class="chip">Bahasa Indonesia & Inggris</span>
         <span class="chip">Notifikasi status</span>
         <span class="chip">Janji temu daring</span>
         <span class="chip">24/7 Hotline</span>
-      </div>
+      </div> -->
     </section>
 
     <section class="grid">
-      <article class="card" id="haloabudhabi">
+      <article class="card" id="haloabudhabi" data-href="https://chatgpt.com/g/g-6901b33f28648191991b868a6fbaf6e1-haloabudhabi" role="link" tabindex="0" aria-label="Buka HaloAbuDhabi">
         <div class="icon">🤝</div>
         <h3>HaloAbuDhabi</h3>
         <p>Asisten AI dengan basis pengetahuan KBRI untuk menjawab prosedur, dokumen, hingga kebutuhan harian WNI.</p>
         <div class="links">
-          <a href="#">Tanya layanan</a>
-          <a href="#">Cari prosedur</a>
-          <a href="#">Jam operasional</a>
+          <a href="https://chatgpt.com/g/g-6901b33f28648191991b868a6fbaf6e1-haloabudhabi">Tanya layanan</a>
+          <a href="https://chatgpt.com/g/g-6901b33f28648191991b868a6fbaf6e1-haloabudhabi">Cari prosedur</a>
+          <a href="https://chatgpt.com/g/g-6901b33f28648191991b868a6fbaf6e1-haloabudhabi">Jam operasional</a>
         </div>
       </article>
 
