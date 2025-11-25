@@ -50,6 +50,42 @@
       align-items: center;
       gap: 12px;
     }
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-left: auto;
+    }
+    .lang-switch {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 8px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.04);
+    }
+    .lang-switch a {
+      text-decoration: none;
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 13px;
+      padding: 6px 10px;
+      border-radius: 10px;
+      transition: background 150ms ease, color 150ms ease, border 150ms ease;
+      border: 1px solid transparent;
+    }
+    .lang-switch a:hover {
+      color: var(--text);
+      background: rgba(255,255,255,0.06);
+      border-color: rgba(255,255,255,0.08);
+    }
+    .lang-switch a.active {
+      background: linear-gradient(120deg, var(--accent) 0%, var(--accent-2) 100%);
+      color: #08242e;
+      border-color: transparent;
+      box-shadow: 0 6px 14px rgba(0,224,184,0.24);
+    }
     .brand img {
       width: 48px;
       height: 48px;
